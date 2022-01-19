@@ -1,0 +1,41 @@
+{% extends "layouts/block.twig" %}
+{% import "macros/svg-icons.twig" as svg %}
+
+{% set block_name = 'acf-highlights' %}
+{% set stick = block.name == 'acf/features-highlights-block' ? 'mb-40 lg:sticky lg:top-[120px]' : null %}
+
+{% block content %}
+
+	<div class="block--inner {{ stick }}">
+		
+		{% if block_fields.highlights_title or block_fields.highlights_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2 mb-20">{{ block_fields.highlights_title }}</h2>
+				<p class="p-body">{{ block_fields.highlights_description }}</p>
+			</div>
+		{% endif %}
+
+		<div class="block-main">
+			<div class="highlights">
+				<ul class="highlights__list flex">
+				{% for highlight in block_fields.highlights %}
+					{% if highlight %}
+						<li class="highlights__list-item flex items-center">
+							<p>{{ highlight }}</p>
+							{% if not loop.last %}
+								{{ svg.svgSpriteIcon('text-dark-fuchsia ml-10 mr-10 h-12 w-12', 'heart') }}
+							{% endif %}
+						</li>
+					{% endif %}
+				{% endfor %}
+				</ul>
+			</div>
+			{% if block_fields.highlights_link.title %}			
+				<div class="cta mt-40 hidden lg:block">
+					<a class="secondary" href="{{ block_fields.highlights_link.url }}" data-title="{{ block_fields.highlights_link.title }}">{{ block_fields.highlights_link.title }}</a>
+				</div>
+			{% endif %}				
+		</div>
+	</div>
+
+{% endblock %}

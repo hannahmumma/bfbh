@@ -1,0 +1,13 @@
+.primary,
+li.primary,
+button.primary {
+	@apply text-white text-center py-10 px-20 rounded-full bg-royal-fuchsia shadow cursor-pointer
+		hover:text-light-pink transition
+		bg-gradient-to-r from-light-fuchsia to-royal-fuchsia;
+}
+
+.secondary,
+button.secondary {	
+	@apply rounded-full py-10 px-20 bg-white text-royal-fuchsia cursor-pointer shadow
+		hover:text-white transition hover:bg-royal-fuchsia;
+}

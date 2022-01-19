@@ -1,0 +1,13 @@
+{% macro svgSpriteIcon(class = null, file_name = null) %}
+	<svg class="{{ class ?? '' }}">
+		<use xlink:href="#{{ file_name ?? '' }}"></use>
+	</svg>
+{% endmacro %}
+
+{% macro svgIcon(icon, iconClass) %}
+  {% include './icons/' ~ icon ~ '.svg.twig' with {
+    'icon': icon,
+    'iconClass': iconClass
+    } only
+  %}
+{% endmacro %}

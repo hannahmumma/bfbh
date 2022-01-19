@@ -1,0 +1,25 @@
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-google-calendar' %}
+
+{% block content %}
+
+	<div class="" data-block={{ block_name }} data-block-id={{ block.id }}>
+
+		{% if block_fields.calendar_title or block_fields.calendar_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2 mb-20">{{ block_fields.calendar_title }}</h2>
+				<p class="p-body">{{ block_fields.calendar_description }}</p>
+			</div>
+		{% endif %}
+
+		{% if block_fields.add_calendar == true %}		
+
+			<div class="calendar-wrapper">
+				<iframe class="w-full rounded-16" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=YmZiaDIwQGdtYWlsLmNvbQ&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%230B8043" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+			</div>
+
+		{% endif %}
+	</div>
+
+{% endblock %}

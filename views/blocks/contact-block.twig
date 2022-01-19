@@ -1,0 +1,51 @@
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-contact' %}
+{% set block_classes = 'container' %}
+
+
+{% block content %}
+
+	<div class="block--inner" id="contact">
+
+		{% if block_fields.contact_title or block_fields.contact_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2 mb-20">{{ block_fields.contact_title }}</h2>
+				<p class="p-body">{{ block_fields.contact_description }}</p>
+			</div>
+		{% endif %}
+
+		<div class="block-main md:flex">
+			<div class="contact-info text-center md:w-1/2">
+				<div class="address">
+					<p>{{ block_fields.contact_address.address_line_1 }}</p>
+					<p>{{ block_fields.contact_address.address_line_2 }}</p>
+					<p>{{ block_fields.contact_address.address_city_state_zip }}</p>
+				</div>
+				<div class="phone">
+					<a href="tel:{{ block_fields.contact_phone }}">{{ block_fields.contact_phone }}</a>
+				</div>
+				<div class="email">
+					<a href="mailto:{{ block_fields.contact_email }}">{{ block_fields.contact_email }}</a>
+				</div>
+			</div>
+
+			<div class="contact-form md:w-1/2">
+				<form class="flex flex-col" action="contact.php" method="POST">
+
+					<label class="mb-10" for="name">Name:</label>
+					<input class="w-2/3 mb-16 p-10 rounded-8 border-1 border-light-pink transition duration-500 focus:bg-light-pink" type="text" name="name">
+
+					<label class="mb-10" for="email">Email:</label>
+					<input class="email w-2/3 mb-16 p-10 rounded-8 border-1 border-light-pink transition duration-500 focus:bg-light-pink" 
+					name="email" type="email" placeholder="email@email.com" required>
+
+					<label class="mb-10" for="message">Message:</label>							
+					<textarea class="mb-16 p-10 rounded-8 border-1 border-light-pink h-100 transition duration-500 focus:bg-light-pink" name="message" type="textarea" placeholder="optional message"></textarea>
+
+					<button class="primary self-start" type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

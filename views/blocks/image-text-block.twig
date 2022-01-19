@@ -1,0 +1,47 @@
+{% extends "layouts/block.twig" %}
+{% import "macros/cta-btns.twig" as cta %}
+
+{% set block_name = 'acf-image-text' %}
+{% set is_hero = block_fields.is_hero == 'Yes' ? ' is-hero' : null %}
+{% set block_classes = "is-full-width#{is_hero}" %}
+
+
+{% block content %}
+
+	<div class="block--inner relative">
+
+		<div class="block-main flex flex-col">
+
+			{% if block_fields.image_text_title %}
+
+				<div class="heading-wrapper {{ title_align }}">
+					<h2 class="heading-2">{{ block_fields.image_text_title }}</h2>
+				</div>
+
+			{% endif %}
+
+			{% if block_fields.image_text_description or block_fields.image_text_link.url %}
+				<div class="text-wrapper self-end">
+					{% if block_fields.image_text_description %}
+						{{ block_fields.image_text_description }}
+					{% endif %}
+
+					{% if block_fields.image_text_link %}
+						{{ cta.ctaBtn('primary', block_fields.image_text_link.url, block_fields.image_text_link.title) }}
+					{% endif %}	
+				</div>
+			{% endif %}
+		
+		</div>
+
+		{% if block_fields.image_text_image.url %}
+			<div class="image-wrapper w-full">
+				<img class="" src="{{ block_fields.image_text_image.url }}" alt={{ block_fields.image_text.alt }}/>
+			</div>
+		{% endif %}
+
+	</div>
+
+{% endblock %}
+
+

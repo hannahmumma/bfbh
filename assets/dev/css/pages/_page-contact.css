@@ -1,0 +1,7 @@
+.page-contact {
+	@apply bg-light-gray;
+
+	.heading-1 {
+		@apply text-center;
+	}
+}

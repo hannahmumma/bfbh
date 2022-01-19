@@ -1,0 +1,8 @@
+.is-hidden.is-modal,
+.is-hidden.is-backdrop {
+	@apply opacity-0 h-0 p-0 z-[-1];
+}
+
+.is-hidden .modal-inner {
+	@apply h-0 p-0 z-[-1];
+}

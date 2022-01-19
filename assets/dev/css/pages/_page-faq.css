@@ -1,0 +1,4 @@
+.page-faq .page-heading,
+.page-faq .block-container {
+	@apply max-w-[1024px];
+}

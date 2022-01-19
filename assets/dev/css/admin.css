@@ -1,0 +1,9 @@
+/* admin styles */
+
+.edit-post-visual-editor {
+	@apply font-serif;
+}
+
+.trash a {
+	@apply text-royal-fuchsia;
+}

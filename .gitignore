@@ -1,0 +1,28 @@
+
+# Development files
+docker-compose.yml
+node_modules
+
+# Plugin files
+plugins/akismet
+plugins/hello.php
+plugins/index.php
+
+# Uploads directory
+/uploads
+
+# Local Environment
+.env
+.htaccess
+uploads.ini
+
+# Composer
+/vendor
+
+# Ignore temporary OS files
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

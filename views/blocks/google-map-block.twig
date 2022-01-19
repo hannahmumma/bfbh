@@ -1,0 +1,31 @@
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-google-map' %}
+{% set block_classes = 'is-full-width' %}
+
+{% block content %}
+
+	<div class="" data-block={{ block_name }} data-block-id={{ block.id }}>
+
+		{% if block_fields.map_title or block_fields.map_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2 mb-20">{{ block_fields.map_title }}</h2>
+				<p class="p-body">{{ block_fields.map_description }}</p>
+			</div>
+		{% endif %}
+	
+		<div class="map">
+			<iframe
+				class="w-full"
+				width="600"
+				height="450"
+				style="border:0"
+				loading="lazy"
+				allowfullscreen
+				src="https://www.google.com/maps/embed/v1/place?key={{ google_api_key }}&q={{ block_fields.map_address|replace({' ' : '+'}) }}">
+			</iframe>
+		</div>
+
+	</div>
+
+{% endblock %}

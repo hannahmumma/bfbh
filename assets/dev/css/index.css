@@ -1,0 +1,26 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./globals/_global";
+@import "./globals/_fonts";
+@import "./globals/_typography";
+
+@import "./blocks/_image-text";
+
+@import "./components/_btns";
+@import "./components/_icons";
+
+@import "./components/_header";
+@import "./components/_accordion";
+@import "./components/_background";
+@import "./components/_features";
+
+@import "./components/_modal";
+@import "./components/_form";
+@import "./components/_footer";
+
+@import "./pages/_page-contact";
+@import "./pages/_page-faq";
+
+

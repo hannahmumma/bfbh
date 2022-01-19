@@ -1,0 +1,29 @@
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-hero' %}
+{% set block_classes = 'is-full-width' %}
+
+
+{% block content %}
+
+	<div class="block--inner relative">
+
+		{% if block_fields.hero_heading or block_fields.hero_description %}
+			<div class="block-header">
+				<h2 class="text-light-gold text-center text-[56px] leading-[56px] absolute max-w-[265px] top-[100px] left-[40px] -rotate-[30deg]">{{ block_fields.hero_title }}</h2>
+				<p class="text-white text-center leading-[42px] text-[32px] absolute bottom-[100px] right-40 w-[400px]">{{ block_fields.hero_description }}</p>
+			</div>
+		{% endif %}
+
+		<div class="block-main flex flex-col md:flex-row">
+			{% if block_fields.hero_image.url %}
+				<div class="image-wrapper w-full">
+					<img class="" src="{{ block_fields.hero_image.url }}" alt={{ block_fields.hero_image.alt }}/>
+				</div>
+			{% endif %}
+		
+		</div>
+	</div>
+
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% set module_name = module_name|default(false) %}
+
+{% if  module_name %}
+	<div class="block-container {{ block_classes|default('') }}" data-module="{{ module_name }}" data-block-id="{{ block.id }}">
+		{% block module %}{% endblock %}
+	</div>
+{% else %}
+	<div>
+		<pre>
+			Missing { module_name }
+		</pre>
+	</div>
+{% endif %}

@@ -1,0 +1,33 @@
+{% import "macros/svg-icons.twig" as svg %}
+
+<header class="header bg-transparent text-18 px-20 flex justify-center w-full fixed top-0 md:px-40 md:text-16 lg:px-60 js-header">
+	<div class="header-inner container flex items-center w-full">
+		<div class="menu-icon-wrapper absolute top-20 right-20 cursor-pointer">
+			{{ svg.svgSpriteIcon('menu-open text-royal-fuchsia hover:text-light-pink h-24 w-24 absolute top-0 right-0 z-40 js-open-btn', 'hamburger') }}
+			{{ svg.svgSpriteIcon('menu-close text-royal-fuchsia hover:text-light-pink h-24 w-24 absolute top-0 right-0 z-40 is-hidden js-close-btn', 'close') }}
+		</div>
+		<div class="main-menu bg-white flex flex-col w-full px-20 pt-20 fixed top-0 right-0 opacity-0 bottom-0 border-gray border-t-solid border-t-1 md:w-auto js-main-menu">			
+			<div class="site-logo md:pt-20">
+				<a href={{ site.url }} data-title=>
+					{% if options.header.logo.url %}
+						{% set ext = options.header.logo.url|split('.', 2)[1] %}
+						{% if ext == 'svg' %}
+							{{ inlineSvg(options.header.logo.url) }}
+						{% else %}
+							<img src="{{ options.header.logo.url }}" alt={{ options.header.log.url.alt ?: ' '}} />
+						{% endif %}
+					{% endif %}
+				</a>
+			</div>
+			<nav class="nav">
+				<ul class="menu__list">
+				{% for item in main_menu.items %}
+					<li class="menu__list-item border-gray border-b-solid border-b-1 hover:text-royal-fuchsia transition md:border-0{{ not loop.last ? ' py-20 md:p-10 md:mr-24 md:mb-0' : null}}{{ loop.last ? ' primary mt-20' : null }}" data-item="{{ item.title|lower }}">
+						<a class="" href="{{ item.link }}" data-title="{{ item.title }}" {{ item.target ? 'target="_blank"' : null }}>{{ item.title }}</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</nav>
+		</div>			
+	</div>
+</header>

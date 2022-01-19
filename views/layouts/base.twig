@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+	<!--[if lt IE 9]><html class="no-js no-svg ie lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes }}> <![endif]-->
+	<!--[if IE 9]><html class="no-js no-svg ie ie9 lt-ie9 lt-ie8" {{ site.language_attributes }}> <![endif]-->
+	<!--[if gt IE 9]><!--><html class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">		
+		{{ function('wp_head') }}
+	</head>
+
+	<body class='{{ body_class }} {{ post.title ? "page-#{post.title|replace({' ': '-'})|lower}" : null }}'>
+		<a id="skip-to" href="#content" class="absolute left-0 opacity-0 -z-50 focus:opacity-100 focus:top-0 focus:z-10" aria-label="Skip to main content">Skip to main content</a>
+		{% include 'globals/header.twig' %}
+		<main id="content">
+			{% block page %}{% endblock %}
+		</main>
+		<div class="backdrop is-backdrop w-full h-full fixed z-10 top-0 bottom-0 left-0 right-0 bg-blue-black opacity-90 is-hidden"></div>			
+		{% include 'globals/footer.twig' %}
+		{{ function('wp_footer') }}
+		<div id="svg-icons" class="hidden"></div>
+	</body>
+</html>

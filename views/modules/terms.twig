@@ -1,0 +1,64 @@
+{% import "macros/svg-icons.twig" as svg %}
+
+{% set term_name = term_name|default(null) %}
+{% set fields = fields|default(null) %}
+{% set timber_terms = timber_terms|default(null) %}
+{% set parent_terms = parent_terms|default(null) %}
+
+<div class="block-main">
+	<div class="{{ term_name }}--preview">
+		<ul class="{{ term_name }}__list mb-20">
+		{% for item in fields %}
+			{% for term in timber_terms %}
+
+				{% if term.id == item.term_id %}
+					<li class="{{ term_name }}__list-item{{ not loop.last ? ' mb-10' : null }} flex items-center" data-item="{{ term.name|lower }}">
+						{% if term.icon.url|length %}
+							<div class="icon-wrapper">
+								{{ inlineSvg(term.icon.url) }}
+							</div>
+						{% endif %}
+						<p>{{ term.name }}</p>
+					</li>
+				{% endif %}
+
+			{% endfor %}
+		{% endfor %}
+		</ul>
+	</div>
+	{% if parent_terms|length %}
+		<div class="is-modal is-hidden w-full flex justify-center items-center items-center js-modal">
+			<div class="modal-inner h-full w-full fixed top-0 bottom-0 left-0 z-20 bg-white p-40 shadow lg:h-auto lg:w-1/2 lg:rounded-16 lg:top-60 lg:bottom-auto lg:left-auto">
+				<div class="close absolute top-20 right-20 cursor-pointer js-close">
+					{{ svg.svgSpriteIcon('text-dark-fuchsia h-24 w-24', 'close') }}
+				</div>
+				<div class="{{ term_name }}--all">
+
+					{% for parent_term in parent_terms %}
+						<div class="{{ term_name }}--top-level">
+							<ul class="{{ term_name }}__list mb-20">
+								<h3 class="heading-3 mb-10">{{ parent_term.name }}</h3>
+								{% for item in fields %}
+									{% if item.parent == parent_term.id %}
+										<li class="{{ term_name }}__list-item flex items-center">
+											{% for term in timber_terms %}
+												{% if term.term_id == item.term_id %}
+													<div class="icon-wrapper">
+														{{ inlineSvg(term.icon.url) }}
+													</div>
+												{% endif %}
+											{% endfor %}
+											<p>{{ item.name }}</p>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+		<button class="secondary js-open">See all</button>
+	{% endif %}
+</div>

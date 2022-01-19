@@ -1,0 +1,9 @@
+{% macro ctaBtn(class = null, url = null, text = null ) %}
+
+	<div class="cta">
+		<a href="{{ url }}" data-title="{{ text }}">
+			<button class="{{ class }}">{{ text }}</button>
+		</a>
+	</div>
+
+{% endmacro %}

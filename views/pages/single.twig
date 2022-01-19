@@ -1,0 +1,15 @@
+{% extends 'layouts/base.twig' %}
+
+{% block page %}
+
+	<div class="wrapper pb-80">
+		{% if override_page_title != true %}
+			<div class="page-heading container pt-40 px-10 md:px-40">
+				<h1 class="heading-1">{{post.title }}</h1>
+			</div>
+		{% endif %}
+		
+		{{ post.content }}
+		
+	</div>
+{% endblock %}

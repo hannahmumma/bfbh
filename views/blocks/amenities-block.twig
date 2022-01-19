@@ -1,0 +1,28 @@
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-amenities' %}
+
+{% block content %}
+	
+	{# @see ThemeManager.php #}
+	{% set timber_terms = getTimberTerms('amenities') %}
+	{% set parent_terms = processParentTerms('amenities') %}
+
+	<div class="block--inner">
+
+		{% if block_fields.amenities_title or block_fields.amenities_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2 mb-20">{{ block_fields.amenities_title }}</h2>
+				<p class="p-body">{{ block_fields.amenities_description }}</p>
+			</div>
+		{% endif %}
+
+		{% include 'modules/terms.twig' with {
+			term_name: 'amenities',
+			fields: block_fields.amenities,
+			timber_terms: timber_terms,
+			parent_terms: parent_terms
+		} %}
+	</div>
+
+{% endblock %}

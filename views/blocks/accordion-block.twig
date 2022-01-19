@@ -1,0 +1,49 @@
+{% extends "layouts/block.twig" %}
+{% import "macros/svg-icons.twig" as svg %}
+
+{% set block_name = 'acf-accordion' %}
+{% set block_classes = 'container' %}
+
+{% block content %}
+
+	<div class="block--inner">
+
+		{% if block_fields.accordion_title or block_fields.accordion_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2 mb-20">{{ block_fields.accordion_title }}</h2>
+				<p class="p-body">{{ block_fields.accordion_description }}</p>
+			</div>
+		{% endif %}
+
+		<div class="block-main">
+			<div class="accordion-wrapper js-accordion" data-accordion>
+				{% for item in block_fields.accordions %}
+					<ul id="{{ item.title|lower|replace({' ': '-'})}}" class="accordion__list leading-28{{ not loop.last ? ' mb-40' : null }}">
+						<li class="accordion__list-item">
+							<div class="intro flex justify-between">
+								<h3 class="heading-3">{{item.title}}</h3>
+								<button class="text-14 hover:text-sky-blue js-accordion-btn" data-accordion-status="is-closed">Open all</button>
+							</div>
+							<ul class="accordions__list">			
+								{% for ac in item.accordion %}
+									<li class="accordions__list-item text-18 border-b-1 border-gray py-20">
+										<div class="flex items-center justify-between cursor-pointer js-accordion-item" data-accordion-item="toggle">
+											<p class="p-body">{{ ac.item }}</p>
+											<div class="icon-wrapper is-closed text-royal-fuchsia">
+												{{ svg.svgIcon('arrow-down', 'icon m-8 w-16 h-16') }}
+											</div>
+										</div>
+										<div class="is-closed" data-accordion-item="reveal">
+											{{ ac.description }}
+										</div>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
