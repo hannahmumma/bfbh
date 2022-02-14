@@ -14,7 +14,7 @@ class WordPressManager
     {
         add_filter('wp_check_filetype_and_ext', [$this, 'fileTypes'], 10, 4);
         add_filter('upload_mimes', [$this, 'mimeTypes']);
-        add_action('wp_default_scripts', [$this, 'removeJQueryMigrate'], 999);        
+        add_action('wp_default_scripts', [$this, 'removeJQueryMigrate'], 999);
         add_filter('show_admin_bar', [$this, 'disableAdminFromFrontEnd']);
     }
 
@@ -41,7 +41,7 @@ class WordPressManager
         return $mimes;
     }
 
-    public function removeJQueryMigrate( $scripts ) 
+    public function removeJqueryMigrate( $scripts ) 
     {
         if (! is_admin() && isset($scripts->registered['jquery']) ) {
             $script = $scripts->registered['jquery'];
@@ -60,5 +60,4 @@ class WordPressManager
 
         return false;
     }
-
 }

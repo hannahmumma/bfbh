@@ -1,7 +1,7 @@
 import "../css/admin.css";
 
 const adminInit = () => {
-	console.log("admin");
+    console.log("admin");
 };
 
 adminInit();

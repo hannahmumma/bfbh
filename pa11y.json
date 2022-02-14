@@ -1,0 +1,7 @@
+{
+    "urls": {
+        "local": "http://localhost:8000/",
+        "staging": "",
+        "production": ""
+    }
+}

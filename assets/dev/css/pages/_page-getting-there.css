@@ -1,0 +1,27 @@
+.page-getting-there {
+    @apply bg-light-gray;
+
+    .wp-block-columns:not(:nth-child(2)) {
+        @apply pt-0;
+    }
+
+    .wp-block-column:first-of-type {
+        @apply mb-20 md:mb-0;
+    }
+
+    .wp-block-column:nth-child(odd) {
+        @apply flex items-center justify-center;
+    }
+
+    .wp-block-column:nth-child(even) {
+        @apply flex items-center;
+    }
+
+    .wp-block-image {
+        @apply flex justify-center mb-0;
+    }
+
+    .wp-block-image img {
+        @apply w-auto mb-0;
+    }
+}

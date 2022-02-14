@@ -1,0 +1,80 @@
+{% import "macros/svg-icons.twig" as svg %}
+
+{% extends 'layouts/module.twig' %}
+
+{% set module_name = 'contact' %}
+{% set module_classes = 'bg-light-pink py-60 px-20 md:py-80 md:px-40 lg:px-60' %}
+
+{% block module %}
+	<div class="module--inner container" id="contact">
+
+		{% if options.contact.contact_title or options.contact.contact_description %}
+			<div class="module-header text-center mb-20 md:mb-40">
+				{% if options.contact.contact_title %}
+					<h2 class="heading-2">{{ options.contact.contact_title }}</h2>
+				{% endif %}
+				
+				{% if options.contact.contact. contact_description %}
+					<p class="mb-20">{{ options.contact.contact_description }}</p>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		<div class="module-main md:flex items-center">
+
+			<div class="contact-info text-center mb-40 md:w-1/2 md:mb-0">
+				<address class="address flex flex-col">
+					<h3 class="text-20 leading-24 font-900 mb-10">{{ options.contact.contact_info.name }}</h3>
+					{% if options.contact.contact_info.address_line_1 %}
+						<p>{{ options.contact.contact_info.address_line_1 }}</p>					
+					{% endif %}
+
+					{% if options.contact.contact_info.address_line_2 %} 
+						<p>{{ options.contact.contact_info.address_line_2 }}</p>
+					{% endif %}
+					
+					{% if options.contact.contact_info.city_state_zip %} 
+						<p>{{ options.contact.contact_info.city_state_zip }}</p>
+					{% endif %}
+
+					{% if options.contact.contact_info.phone %}
+						<a class="hover:text-royal-fuchsia" href="tel:{{ options.contact.contact_info.phone }}">{{ options.contact.contact_info.phone }}</a>
+					{% endif %}
+
+					{% if options.contact.contact_info.email %}
+						<a class="hover:text-royal-fuchsia" href="mailto:{{ options.contact.contact_info.email }}">{{ options.contact.contact_info.email }}</a>
+					{% endif %}
+				</address>
+			</div>
+
+			<div class="contact-form md:w-1/2">
+
+				<form class="flex flex-col">
+					<div class="error is-hidden font-bold mb-20 md:w-2/3">
+						<p class="text-royal-fuchsia text-14">Something went wrong. Please try again or contact Brian directly with the information provided.</p>
+					</div>
+					<div class="flex flex-col mb-16 md:w-2/3">
+						<input class="name p-10 rounded-8 border-1 border-light-pink transition duration-500 focus:bg-light-gray" type="text" name="first_name" placeholder="First*" aria-label="first_name" required>
+					</div>
+					<div class="flex flex-col mb-16 md:w-2/3">
+						<input class="name p-10 rounded-8 border-1 border-light-pink transition duration-500 focus:bg-light-gray" type="text" name="last_name" placeholder="Last*" aria-label="last_name" required>
+					</div>
+					<div class="flex flex-col mb-16 md:w-2/3">
+						<input class="email p-10 rounded-8 border-1 border-light-pink transition duration-500 focus:bg-light-gray" 
+					name="email" type="Email" placeholder="email@email.com*" aria-label="email" required>
+					</div>
+					<div class="flex flex-col w-full mb-16">						
+						<textarea class="message p-10 rounded-8 border-1 border-light-pink h-100 transition duration-500 focus:bg-light-gray lg:max-w-[500px]" name="message" type="textarea" placeholder="Optional message" aria-label="message"></textarea>
+					</div>
+					<div class="required-fields text-12 text-royal-fuchsia mb-16 md:text-left">
+						<p>Fields marked with * are required</p>
+					</div>
+					<button class="primary flex items-center self-center md:self-start" name="submit" type="submit">
+						{{ svg.svgIcon('loading', 'spinner animate-spin -ml-1 mr-3 h-16 w-16 text-white is-hidden') }}		
+						<span class="btn-text">Submit</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

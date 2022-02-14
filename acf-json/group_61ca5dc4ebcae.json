@@ -41,6 +41,23 @@
             "delay": 0
         },
         {
+            "key": "field_61f432db241b2",
+            "label": "Message",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "You can add as many amenities as you want. Only 12 will be displayed under the heading\/description. The rest will be displayed in a modal.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_61ca6bb0ff99b",
             "label": "Amenities",
             "name": "amenities",
@@ -81,5 +98,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1641687451
+    "modified": 1643393817
 }

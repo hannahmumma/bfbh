@@ -1,0 +1,49 @@
+.page-dining-attractions {
+    @apply bg-light-gray;
+
+    .wp-block-columns:not(:nth-child(2)) {
+        @apply pt-0 justify-center;
+    }
+
+    .wp-block-columns:nth-child(odd) .wp-block-column:first-child {
+        @apply order-2 mt-20 mb-0 md:m-0;
+
+        @screen md {
+            order: unset;
+        }
+
+        .wp-block-paragraph {
+            @apply md:mr-20;
+        }
+    }
+
+    .wp-block-columns:nth-child(even) .wp-block-column:nth-child(2) {
+        .wp-block-paragraph {
+            @apply md:ml-20;
+        }
+    }
+
+    .wp-block-column {
+        @apply flex items-center justify-center;
+    }
+
+    .wp-block-column:first-of-type {
+        @apply mb-20 md:mb-0;
+    }
+
+    .wp-block-image {
+        @apply mb-0;
+    }
+
+    .wp-block-image img {
+        @apply w-auto rounded-16;
+    }
+
+    @media (min-width: 600px) and (max-width: 768px) {
+        .wp-block-columns:not(.is-not-stacked-on-mobile)
+            > .wp-block-column:not(:only-child) {
+            flex-basis: unset !important;
+            flex-grow: unset !important;
+        }
+    }
+}

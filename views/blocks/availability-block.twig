@@ -1,0 +1,45 @@
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-availability' %}
+
+{% block content %}
+	<div class="block--inner container">
+		<div class="block-main">
+
+			{% if block_fields.availability_title or block_fields.availability_description %}
+				<div class="block-header mb-20">
+					<h2 class="heading-2">{{ block_fields.availability_title }}</h2>
+					<p class="p-body">{{ block_fields.availability_description }}</p>
+				</div>
+			{% endif %}
+			
+			<div class="availability flex flex-col md:flex-row md:gap-x-20 md:flex-wrap">
+				{% for item in block_fields.availability %}
+					<div class="available-dates mb-20 shadow p-20 border-1 border-dark-fuchsia rounded-8 md:w-[48%] md:mb-40 lg:w-[31%]">
+
+						{% if item %}
+							<h3 class="text-royal-fuchsia text-20 font-900 mb-10">{{ item.month_year }}</h3>
+						{% endif %}
+
+						{% for dates in item.dates %}
+							{% if dates|length %}
+								<div class="dates flex ">
+									{% if dates.start_date %}
+										<p>{{ dates.start_date }}</p>
+									{% endif %}
+									<span class="mx-4">-</span>
+									{% if dates.end_date %}
+										<p>{{ dates.end_date }}</p>
+									{% endif %}
+								</div>
+							{% endif %}
+
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+

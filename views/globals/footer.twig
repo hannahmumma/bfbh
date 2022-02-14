@@ -1,57 +1,53 @@
-<footer class="footer bg-royal-fuchsia text-white">
+{% import "macros/svg-icons.twig" as svg %}
 
-	<div class="footer-main py-40 px-20 md:px-40">
-		<div class="site-logo mb-20">
-			<a href={{ site.url }} data-title="Site Logo">
+<footer class="footer bg-royal-fuchsia text-white">
+	<div class="footer-main container py-40 px-20 md:px-40">
+ 		<div class="site-logo mb-20">
+			<a class="inline-block" href={{ site.url }} data-title="Site Logo">
 				{% if options.footer.logo.url %}
-					{% set ext = options.footer.logo.url|split('.', 2)[1] %}
+					{% set ext = getExtension(options.footer.logo.url) %}
 					{% if ext == 'svg' %}
 						{{ inlineSvg(options.footer.logo.url) }}
 					{% else %}
 						<img src="{{ options.footer.logo.url }}" alt={{ options.footer.log.url.alt ?: ' '}} />
 					{% endif %}
 				{% else %}
-					Our Happy Place
+					{{ svg.svgIcon('logo', 'h-auto w-[75px] scale-x-[-1]') }}
 				{% endif %}
 			</a>
 		</div>
 
-		<ul class="footer__list leading-28 mb-20 inline-block">
+ 		<ul class="footer__list leading-28 inline-block">
 			{% for item in footer_menu.items %}
 				<li class="footer__list-item w-auto" data-title={{ item.title }}>
 					<a href="{{ item.url }}" {{ item.target ? 'target="_blank"' : null }}>{{ item.title }}</a>
 				</li>
 			{% endfor %}
 		</ul>
-
-		<ul class="footer__list social flex mb-10 md:mb-0">
-			{% for item in social_menu.items %}
-				{% set icon = item.meta('icon') %}
-				<li class="footer__list-item{{ not loop.last ? ' mr-10' : null }}" data-title="{{ item.title }}">
-					<a href="{{ item.url }}" {{ item.target ? 'target="_blank"' : null }}>
-						{% if icon.url %}
-							{{ inlineSvg(icon.url) }}
-						{% endif %}
-					</a>
-				</li>
-			{% endfor %}
-		</ul>		
-
 	</div>
 
-	<div class="footer-bottom py-16 bg-dark-fuchsia px-20 md:px-40">
-		<div class="footer-bottom--inner md:flex md:items-center md:justify-between">
+	<div class="footer-bottom py-16 bg-dark-fuchsia">
+		<div class="footer-bottom--inner container px-20 md:px-40 md:flex md:items-center md:justify-between">
 
-			<ul class="footer__list flex flex-col leading-28 mb-20 md:flex-row md:mb-0">
-				<li class="footer__list-item mr-24" data-title="TOS">
-					<a href="#">Terms of Use</a>
-				</li>
-				<li class="footer__list-item" data-title="Privacy Policy">
-					<a href="#">Privacy Policy</a>
-				</li>
-			</ul>			
-			<div class="copyright text-14">
-				<p class="">©{{ now|date('Y') }} {{ bloginfo('name') }}</p>
+			<ul class="footer__list social flex mb-10 md:mb-0">
+				{% for item in social_menu.items %}
+					{% set icon = item.meta('icon') %}
+					<li class="footer__list-item{{ not loop.last ? ' mr-10' : null }}" data-title="{{ item.title }}">
+						<a href="{{ item.url }}" {{ item.target ? 'target="_blank"' : null }}>
+							{% if icon.url %}
+								{% set ext = getExtension(icon.url) %}
+								{% if ext == 'svg' %}
+									{{ inlineSvg(icon.url) }}
+								{% else %}
+									<img src="{{ icon.url }}" alt={{ icon.url.alt ?: ' '}} />
+								{% endif %}
+							{% endif %}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>	
+ 			<div class="copyright text-14">
+				<p class="">© {{ now|date('Y') }} {{ bloginfo('name') }}</p>
 			</div>
 		</div>
 

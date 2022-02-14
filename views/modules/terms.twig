@@ -7,48 +7,79 @@
 
 <div class="block-main">
 	<div class="{{ term_name }}--preview">
-		<ul class="{{ term_name }}__list mb-20">
+
+		<ul class="{{ term_name }}__list mb-20 md:flex ">
 		{% for item in fields %}
-			{% for term in timber_terms %}
 
-				{% if term.id == item.term_id %}
-					<li class="{{ term_name }}__list-item{{ not loop.last ? ' mb-10' : null }} flex items-center" data-item="{{ term.name|lower }}">
-						{% if term.icon.url|length %}
-							<div class="icon-wrapper">
-								{{ inlineSvg(term.icon.url) }}
-							</div>
-						{% endif %}
-						<p>{{ term.name }}</p>
-					</li>
-				{% endif %}
+			{% if loop.first %}
+				<li class="{{ term_name }}__list-item md:w-1/4">
+			{% endif %}
 
-			{% endfor %}
+			{% if loop.index <= 12 %}
+				{% for term in timber_terms %}
+					{% if term.id == item.term_id %}
+						<div class="{{ not loop.last ? ' mb-20 md:mb-10' : null }} flex items-center" data-item="{{ term.name|replace({' ' : '-'})|lower }}">
+							{% if term.icon.url|length %}
+								<div class="icon-wrapper w-24 h-auto mr-10">
+									{% set ext = getExtension(term.icon.url) %}
+									{% if ext == 'svg' %}
+										{{ inlineSvg(term.icon.url) }}
+									{% else %}
+										<img src="{{ term.icon.url }}" alt="{{ term.icon.url.alt ?: ' '}}" />
+									{% endif %}
+								</div>
+							{% endif %}
+							<p>{{ term.name }}</p>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+
+    		{% if loop.index % 3 == 0 and loop.index < 12 %}
+    			</li><li class="{{ term_name }}__list-item md:w-1/4 {{ loop.index <= 6 ? 'hidden md:block' }}">
+    		{% endif %}
+
 		{% endfor %}
 		</ul>
 	</div>
+
 	{% if parent_terms|length %}
-		<div class="is-modal is-hidden w-full flex justify-center items-center items-center js-modal">
-			<div class="modal-inner h-full w-full fixed top-0 bottom-0 left-0 z-20 bg-white p-40 shadow lg:h-auto lg:w-1/2 lg:rounded-16 lg:top-60 lg:bottom-auto lg:left-auto">
+		<div class="modal w-full flex justify-center items-center items-center is-hidden js-modal">
+			<div class="modal--inner px-20 py-40 bg-white h-full w-full fixed top-0 bottom-0 left-0 z-20 overflow-y-scroll shadow md:p-40 lg:h-[80%] lg:w-1/2 lg:rounded-16 lg:top-60 lg:bottom-auto lg:left-auto">
 				<div class="close absolute top-20 right-20 cursor-pointer js-close">
-					{{ svg.svgSpriteIcon('text-dark-fuchsia h-24 w-24', 'close') }}
+					{{ svg.svgSpriteIcon('text-dark-fuchsia h-24 w-24 hover:text-light-pink', 'close') }}
 				</div>
 				<div class="{{ term_name }}--all">
 
 					{% for parent_term in parent_terms %}
-						<div class="{{ term_name }}--top-level">
-							<ul class="{{ term_name }}__list mb-20">
-								<h3 class="heading-3 mb-10">{{ parent_term.name }}</h3>
+						<div class="{{ term_name }}--top-level {{ not loop.last ? 'border-b-1 border-b-gray' }}">
+							<ul class="{{ term_name }}__list my-20">
+								<h3 class="heading-3 text-20 font-900 mb-20">{{ parent_term.name }}</h3>
 								{% for item in fields %}
 									{% if item.parent == parent_term.id %}
-										<li class="{{ term_name }}__list-item flex items-center">
+										<li class="{{ term_name }}__list-item flex mb-20">
 											{% for term in timber_terms %}
 												{% if term.term_id == item.term_id %}
-													<div class="icon-wrapper">
-														{{ inlineSvg(term.icon.url) }}
-													</div>
+													{% if term.icon.url %}
+														<div class="icon-wrapper w-24 h-auto mr-10">
+															{% set ext = getExtension(term.icon.url) %}
+															{% if ext == 'svg' %}
+																{{ inlineSvg(term.icon.url) }}
+															{% else %}
+																<img src="{{ term.icon.url }}" alt="{{ term.icon.url.alt ?: ' '}}" />
+															{% endif %}
+														</div>
+													{% endif %}
 												{% endif %}
 											{% endfor %}
-											<p>{{ item.name }}</p>
+											<div class="flex flex-col">
+												{% if item.name %}
+													<p class="mb-10">{{ item.name }}</p>
+												{% endif %}
+												{% if item.description %}
+													<p class="text-dark-gray">{{ item.description }}</p>
+												{% endif %}
+											</div>
 										</li>
 									{% endif %}
 								{% endfor %}

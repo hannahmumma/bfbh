@@ -1,11 +1,11 @@
 {
     "key": "group_61d86b11e76c6",
-    "title": "Block: Google Calendar",
+    "title": "Block: Availability",
     "fields": [
         {
             "key": "field_61da2a01b44c3",
-            "label": "Calendar Title",
-            "name": "calendar_title",
+            "label": "Availability Title",
+            "name": "availability_title",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -23,8 +23,8 @@
         },
         {
             "key": "field_61da2a0ab44c4",
-            "label": "Calendar Description",
-            "name": "calendar_description",
+            "label": "Availability Description",
+            "name": "availability_description",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -41,10 +41,10 @@
             "new_lines": ""
         },
         {
-            "key": "field_61d86b11ee734",
-            "label": "Add Calendar",
-            "name": "add_calendar",
-            "type": "true_false",
+            "key": "field_61f848e114f02",
+            "label": "Availability",
+            "name": "availability",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -53,11 +53,87 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add Month",
+            "sub_fields": [
+                {
+                    "key": "field_61f848f514f03",
+                    "label": "Month Year",
+                    "name": "month_year",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61f8490b14f04",
+                    "label": "Dates",
+                    "name": "dates",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Add Dates",
+                    "sub_fields": [
+                        {
+                            "key": "field_61f8491214f05",
+                            "label": "Start Date",
+                            "name": "start_date",
+                            "type": "date_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "display_format": "F j, Y",
+                            "return_format": "F j, Y",
+                            "first_day": 1
+                        },
+                        {
+                            "key": "field_61f8492814f06",
+                            "label": "End Date",
+                            "name": "end_date",
+                            "type": "date_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "display_format": "F j, Y",
+                            "return_format": "F j, Y",
+                            "first_day": 1
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -65,7 +141,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/google-calendar-block"
+                "value": "acf\/availability-block"
             }
         ]
     ],
@@ -78,5 +154,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1641687573
+    "modified": 1644093971
 }

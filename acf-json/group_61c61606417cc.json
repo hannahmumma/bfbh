@@ -41,15 +41,99 @@
             "new_lines": ""
         },
         {
+            "key": "field_61ed764d9061d",
+            "label": "Map Location",
+            "name": "map_location",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Address": "Address",
+                "Latitude\/Longitude": "Latitude\/Longitude"
+            },
+            "allow_null": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
             "key": "field_61de0b47060c1",
             "label": "Map Address",
             "name": "map_address",
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61ed764d9061d",
+                        "operator": "==",
+                        "value": "Address"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61ed76339061b",
+            "label": "Map Latitude",
+            "name": "map_latitude",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61ed764d9061d",
+                        "operator": "==",
+                        "value": "Latitude\/Longitude"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61ed76449061c",
+            "label": "Map Longitude",
+            "name": "map_longitude",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61ed764d9061d",
+                        "operator": "==",
+                        "value": "Latitude\/Longitude"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -78,5 +162,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1642178195
+    "modified": 1642952492
 }

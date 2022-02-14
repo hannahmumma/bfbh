@@ -1,0 +1,21 @@
+[data-accordion] {
+    [data-accordion-item="toggle"] {
+        @apply opacity-100 h-auto ease-in-out duration-300;
+    }
+
+    .is-opened[data-accordion-item="reveal"] {
+        @apply opacity-100 h-auto transform transition translate-y-0 translate-y-10 ease-in-out duration-300;
+    }
+
+    .is-closed[data-accordion-item="reveal"] {
+        @apply opacity-0 h-0 transform transition translate-y-10 translate-y-0 ease-in-out duration-300;
+    }
+
+    .is-closed.icon-wrapper {
+        @apply origin-center ease-in-out duration-300;
+    }
+
+    .is-opened.icon-wrapper {
+        @apply origin-center rotate-180 ease-in-out duration-300;
+    }
+}

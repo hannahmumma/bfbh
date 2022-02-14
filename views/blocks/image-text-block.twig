@@ -1,44 +1,49 @@
-{% extends "layouts/block.twig" %}
 {% import "macros/cta-btns.twig" as cta %}
 
-{% set block_name = 'acf-image-text' %}
-{% set is_hero = block_fields.is_hero == 'Yes' ? ' is-hero' : null %}
-{% set block_classes = "is-full-width#{is_hero}" %}
+{% extends "layouts/block.twig" %}
 
+{% set block_name = 'acf-image-text' %}
+{% set is_hero = block_fields.is_hero == 'Yes' ? true : false %}
+{% set is_hero_class = is_hero == true ? ' is-hero' : null %}
+{% set block_classes = "is-full-width#{is_hero_class}" %}
+
+{% set openingEl = block_fields.is_hero == 'Yes' ? '<h1' : '<h2' %}
+{% set closingEl = block_fields.is_hero == 'Yes' ? '</h1>' : '</h2>' %}
+{% set alignment = block_fields.text_alignment == 'Right' ? 'md:self-end' %}
 
 {% block content %}
 
-	<div class="block--inner relative">
+	<div class="block--inner">
 
-		<div class="block-main flex flex-col">
+		<div class="block-main relative">
+			<div class="block-text flex flex-col">
 
-			{% if block_fields.image_text_title %}
+				{% if block_fields.image_text_title %}
+					<div class="heading-wrapper {{ alignment }}">
+						{{ openingEl }} class="heading-2">{{ block_fields.image_text_title }} {{ closeingEl }}
+					</div>
+				{% endif %}
 
-				<div class="heading-wrapper {{ title_align }}">
-					<h2 class="heading-2">{{ block_fields.image_text_title }}</h2>
-				</div>
+				{% if block_fields.image_text_description or block_fields.image_text_link.url %}
+					<div class="text-wrapper {{ alignment }}">
+						{% if block_fields.image_text_description %}
+							{{ block_fields.image_text_description }}
+						{% endif %}
 
-			{% endif %}
-
-			{% if block_fields.image_text_description or block_fields.image_text_link.url %}
-				<div class="text-wrapper self-end">
-					{% if block_fields.image_text_description %}
-						{{ block_fields.image_text_description }}
-					{% endif %}
-
-					{% if block_fields.image_text_link %}
-						{{ cta.ctaBtn('primary', block_fields.image_text_link.url, block_fields.image_text_link.title) }}
-					{% endif %}	
-				</div>
-			{% endif %}
-		
-		</div>
-
-		{% if block_fields.image_text_image.url %}
-			<div class="image-wrapper w-full">
-				<img class="" src="{{ block_fields.image_text_image.url }}" alt={{ block_fields.image_text.alt }}/>
+						{% if block_fields.image_text_link %}
+							{{ cta.ctaBtn('primary', block_fields.image_text_link.url, block_fields.image_text_link.title) }}
+						{% endif %}	
+					</div>
+				{% endif %}
+			
 			</div>
-		{% endif %}
+
+			{% if block_fields.image_text_image|length %}
+				<div class="block-image image-wrapper w-full">
+					<img class="" src="{{ block_fields.image_text_image.url }}" alt={{ block_fields.image_text.alt }}/>
+				</div>
+			{% endif %}
+		</div>
 
 	</div>
 

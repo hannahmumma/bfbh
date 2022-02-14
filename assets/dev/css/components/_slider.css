@@ -1,0 +1,7 @@
+.swiper {
+    @apply pl-20 pr-20 cursor-grabbing md:pl-0 md:pr-0 md:cursor-default !important;
+}
+
+.swiper-button-disabled {
+    @apply opacity-50;
+}

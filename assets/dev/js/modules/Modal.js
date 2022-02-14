@@ -2,50 +2,56 @@
  * @class Modal
  */
 export default class Modal {
-	/**
-	 * @constructor
-	 * @desc creates an instance of Modal
-	 */
-	constructor() {
-		this.backdrop = document.querySelector(".is-backdrop");
-		this.modals = document.querySelectorAll(".js-modal");
+    /**
+     * @constructor
+     * @desc creates an instance of Modal
+     */
+    constructor() {
+        this.body = document.body;
+        this.backdrop = document.querySelector(".js-backdrop");
+        this.modals = document.querySelectorAll(".js-modal");
 
+        this.init();
+    }
 
-		this.modalInit();
-	}
+    init() {
+        this.modals.forEach((modal) => {
+            this.openBtn = modal.nextElementSibling;
+            this.closeBtn = modal.querySelector(".js-close");
 
-	modalInit() {
-		this.modals.forEach((modal) => {
+            this.open(modal);
+            this.close(modal, this.closeBtn);
+        });
+    }
 
-			this.openBtn = modal.nextElementSibling;
-			this.closeBtn = modal.querySelector(".js-close");
+    /**
+     * @method open
+     * @desc
+     */
+    open(modal) {
+        this.openBtn.addEventListener("click", () => {
+            modal.classList.remove("is-hidden");
+            modal.classList.add("is-visible");
 
+            this.backdrop.classList.remove("is-hidden");
+            this.backdrop.classList.add("is-visible");
 
-			this.openBtn.addEventListener('click', () => {
-				this.open(modal);
-			})
+            this.body.classList.add("disable-scroll");
+        });
+    }
 
-			this.closeBtn.addEventListener('click', () => {
-				this.close(modal);
-			})
+    close(modal, closeBtn) {
+        this.els = [closeBtn, this.backdrop];
+        this.els.forEach((el) => {
+            el.addEventListener("click", () => {
+                modal.classList.remove("is-visible");
+                modal.classList.add("is-hidden");
 
+                this.backdrop.classList.remove("is-visible");
+                this.backdrop.classList.add("is-hidden");
 
-		});
-	}
-
-	/**
-	 * @method open
-	 * @desc
-	 */
-	open(modal) {
-		modal.classList.remove('is-hidden');
-		this.backdrop.classList.remove('is-hidden')
-
-	}
-
-	close(modal) {
-		 modal.classList.add('is-hidden');
-		this.backdrop.classList.add('is-hidden')		 
-	}
-
+                this.body.classList.remove("disable-scroll");
+            });
+        });
+    }
 }

@@ -1,0 +1,8 @@
+.wp-block-columns {
+    @apply container mb-0 py-60 px-20 md:py-80 md:px-40 lg:px-60;
+}
+
+.wp-block-columns:not(.is-not-stacked-on-mobile)
+    > .wp-block-column:not(:first-child) {
+    @apply m-0;
+}

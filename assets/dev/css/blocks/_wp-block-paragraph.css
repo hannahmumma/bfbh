@@ -1,0 +1,7 @@
+.wp-block-paragraph:not(.wp-block-column .wp-block-paragraph) {
+    @apply container py-60 px-20 md:py-80 md:px-40 lg:px-60;
+}
+
+.wp-block-paragraph a {
+    @apply text-dark-fuchsia hover:underline;
+}

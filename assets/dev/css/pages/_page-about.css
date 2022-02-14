@@ -1,0 +1,9 @@
+.page-about {
+    .wp-block-columns {
+        @apply block md:flex !important;
+    }
+
+    .wp-block-column:first-of-type {
+        @apply md:order-2 md:mr-0 md:ml-20;
+    }
+}

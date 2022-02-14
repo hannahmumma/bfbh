@@ -15,7 +15,6 @@ class GutenbergManager
         'core/button',
         'core/embed',
         'core/file',
-        'core/gallery',
         'core/heading',
         'core/html',
         'core/image',
@@ -40,14 +39,13 @@ class GutenbergManager
         add_action('init', [$this, 'registerBlocks']);
         add_action('acf/init', [$this, 'initAcfBlocks']);
         add_filter('block_categories_all', [$this, 'addBlockCategories'], 10, 2);
-        // add_filter('allowed_block_types_all', [$this,'setAllowedBlocks']);
+        add_filter('allowed_block_types_all', [$this,'setAllowedBlocks']);
         add_filter('use_block_editor_for_post', [$this,'disableBlockEditor'], 10, 2);
-        add_filter('render_block', [$this, 'wrapCoreBlocks'], 10, 2);
     }
 
     public function enqueueBlocksScripts(): void
     {
-        wp_register_script('bfbh-blocks', get_template_directory_uri() . '/assets/dist/js/blocks.js', []);        
+        wp_register_script('bfbh-blocks', get_template_directory_uri() . '/assets/dist/js/blocks.js', []);
         wp_enqueue_script('bfbh-blocks', get_stylesheet_directory_uri() . '/assets/dist/js/blocks.js', []);
     }
 
@@ -80,16 +78,12 @@ class GutenbergManager
      * @return void
      */    
     public function initAcfBlocks()
-    {
-        new \BFBH\AcfBlocks\ActivitiesBlock();        
-        new \BFBH\AcfBlocks\AccordionBlock();     
+    {      
+        new \BFBH\AcfBlocks\AccordionBlock();
         new \BFBH\AcfBlocks\AmenitiesBlock();
-        new \BFBH\AcfBlocks\ContactBlock();            
-        new \BFBH\AcfBlocks\FeaturesBlock();       
-        new \BFBH\AcfBlocks\GoogleCalendarBlock();        
+        new \BFBH\AcfBlocks\AvailabilityBlock();
+        new \BFBH\AcfBlocks\GoogleCalendarBlock();
         new \BFBH\AcfBlocks\GoogleMapBlock();
-        new \BFBH\AcfBlocks\HeroBlock();                
-        new \BFBH\AcfBlocks\HighlightsBlock();
         new \BFBH\AcfBlocks\ImageTextBlock();
         new \BFBH\AcfBlocks\SliderBlock();
     }
@@ -124,16 +118,12 @@ class GutenbergManager
     public function setAllowedBlocks($allowed_blocks): array
     {
         $custom_blocks = [
-            'acf/activities-block',            
-            'acf/accordion-block',        
+            'acf/accordion-block',
             'acf/amenities-block',
-            'acf/contact-block',            
-            'acf/features-block',
-            'acf/google-calendar-block',                      
+            'acf/availability-block',
+            'acf/google-calendar-block',
             'acf/google-map-block',
-            'acf/hero-block',            
-            'acf/highlights-block',
-            'acf/image-text-block',            
+            'acf/image-text-block',
             'acf/slider-block',
             'bfbh/hero-block',
         ];
@@ -148,26 +138,5 @@ class GutenbergManager
         $disable_on_posts = [];
 
         return $use_block_editor;
-    }
-
-    public function wrapCoreBlocks($block_content, $block)
-    {
-
-        foreach($this->allowed_core_blocks as $core_block) {        
-
-            if ($block['blockName'] === $core_block) {
-
-                $mod = str_replace('core/', '', $core_block);
-                $this->full_width = (isset($block['attrs']['fullWidthImage'])) ? ' is-full-width' : '';
-                                
-                $content = "<div class='block-container{$this->full_width}' data-block='wp-block-{$mod}'>";
-                $content .= $block_content;
-                $content .= '</div>';
-
-                return $content;
-            }
-        }
-
-        return $block_content;
     }
 }

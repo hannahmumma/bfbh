@@ -1,0 +1,7 @@
+.wp-block-video {
+    @apply m-0;
+
+    video {
+        @apply rounded-16;
+    }
+}

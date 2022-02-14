@@ -1,3 +1,5 @@
+# dist files
+/assets/dist
 
 # Development files
 docker-compose.yml

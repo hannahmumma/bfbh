@@ -12,8 +12,6 @@ use Timber\Menu;
 use Timber\Twig_Filter;
 use Timber\Twig_Function;
 
-use BFBH\Models\FeaturesModel;
-
 class ThemeManager
 {
     public function run()
@@ -23,20 +21,19 @@ class ThemeManager
 
         add_action('init', [$this, 'initCustomPostsTypes']);
         add_action('init', [$this, 'initCustomTaxonomies']);
-
         add_action('init', [$this,'registerMenus']);
-        add_action('acf/init', [$this, 'registerOptionsPage'], 1, 3);
-
         add_action('init', [$this, 'addThemeSupport']);
+        
         add_filter('timber/context', [$this, 'addToTimberContext']);
         add_filter('timber/twig', [$this, 'addToTwig']);
-        add_filter('script_loader_tag', [$this, 'add_async_attribute'], 10, 2);
+        add_filter('script_loader_tag', [$this, 'addAttributesToScript'], 10, 2);
     }
 
     public function enqueue(): void
     {
         wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/assets/dist/css/index.css', [], '1.0');
         wp_enqueue_script('script', get_stylesheet_directory_uri()  . '/assets/dist/js/index.js', [], '1.0', false);
+        wp_localize_script('script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
     }
 
     public function enqueueAdmin(): void
@@ -56,41 +53,18 @@ class ThemeManager
 
     public function initCustomTaxonomies(): void
     {
-        new \BFBH\CustomTaxonomies\ActivitiesTaxonomy();
         new \BFBH\CustomTaxonomies\AmenitiesTaxonomy();
-
     }
 
     public function registerMenus(): void
     {
         register_nav_menus(
             [
-            'main_menu'   => 'Main Menu',
-            'social_menu'  => 'Social Menu',
-            'footer_menu' => 'Footer Menu',
+                'main_menu'   => 'Main Menu',
+                'social_menu'  => 'Social Menu',
+                'footer_menu' => 'Footer Menu',
             ]
         );
-    }
-
-    /**
-     * @method registerOptionsPage    add options page to WP admin
-     * @return void
-     */    
-    public function registerOptionsPage(): void
-    {
-        if (!function_exists('acf_add_options_page') ) {
-            return;
-        }
-
-        $settings = [
-            'page_title'        => 'Global Settings',
-            'menu_title'        => 'Global Settings',
-            'menu_slug'            => 'global-settigns',
-            'position'          => '2',            
-            'icon_url'          => 'dashicons-admin-site',
-        ];
-
-        acf_add_options_page($settings);
     }
 
     public function addThemeSupport(): void
@@ -115,12 +89,6 @@ class ThemeManager
     
     public function addToTwig( $twig ): object
     {
-        $twig->addFilter(
-            new Twig_Filter(
-                'convertToInteger', fn ( $value ): int => intval($value)
-            )
-        );    
-        
         $twig->addFunction( 
             new Twig_Function(
                 'getTimberTerms', [$this, 'getTimberTerms']
@@ -133,11 +101,17 @@ class ThemeManager
             )
         );        
 
-        $twig->addFunction( 
+        $twig->addFunction(
             new Twig_Function(
                 'inlineSvg', [$this, 'inlineSvg']
             )            
-        );   
+        );
+
+        $twig->addFunction( 
+            new Twig_Function(
+                'getExtension', [$this, 'getExtension']
+            )            
+        );          
 
         return $twig;
     }
@@ -146,18 +120,21 @@ class ThemeManager
     {
         return Timber::get_terms($terms);
     }
+
     // return full parent terms
-    public function processParentTerms($terms) 
+    public function processParentTerms($terms_field) 
     {
         $array = [];
-        $parent_terms = Timber::get_terms(array('taxonomy' => $terms, 'parent' => 0));
-        $fields = get_field($terms);
+        $parent_terms = Timber::get_terms(array('taxonomy' => $terms_field, 'parent' => 0));
+        $fields = get_field($terms_field);
 
-        foreach($parent_terms as $parent_term) {
-            foreach($fields as $field) {
-	            if ($parent_term->term_id === $field->parent) {
-	                $array = array_merge($array, [$parent_term]);
-	            }
+        foreach ($parent_terms as $parent_term) {
+            if ($fields ) {
+                foreach ($fields as $field) {
+                    if ($parent_term->term_id === $field->parent) {
+                        $array = array_merge($array, [$parent_term]);
+                    }
+                }
             }
         }
         return array_unique($array);
@@ -179,7 +156,15 @@ class ThemeManager
         return $path;
     }
 
-    public function add_async_attribute($tag, $handle)
+    public function getExtension($url)
+    {
+        $index = getenv('ENVIRONMENT') === 'dev' ? 1 : 2;
+        $ext = explode('.', $url)[$index];
+
+        return $ext;
+    }
+    
+    public function addAttributesToScript($tag, $handle)
     {
         if ('script' !== $handle ) {
 
@@ -188,6 +173,4 @@ class ThemeManager
 
         return str_replace(' src', ' defer src', $tag);
     }
-
-
 }

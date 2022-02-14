@@ -3,7 +3,6 @@
  * Shared between development and production
  * @see webpack.dev.js and webpack.prod.js
  */
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
@@ -16,8 +15,8 @@ module.exports = {
             ? "source-map"
             : "inline-source-map",
     entry: {
-    	admin: "./assets/dev/js/admin.js",
-    	blocks: "./assets/dev/js/blocks.js",
+        admin: "./assets/dev/js/admin.js",
+        blocks: "./assets/dev/js/blocks.js",
         index: "./assets/dev/js/index.js",
     },
     output: {
@@ -78,8 +77,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "css/[name].css",
         }),
-		new SpriteLoaderPlugin({
-			plainSprite: true
-		}),      
+        new SpriteLoaderPlugin({
+            plainSprite: true
+        }),      
     ],
 };

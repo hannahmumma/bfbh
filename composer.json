@@ -14,18 +14,18 @@
       "type": "composer",
       "url": "https://wpackagist.org"
     },
-		{
-		  "type": "package",
-		  "package": {
-		    "name": "advanced-custom-fields/advanced-custom-fields-pro",
-		    "version": "5.11.4",
-		    "type": "wordpress-plugin",
-		    "dist": {
-		      "type": "zip",
-          	  "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k="
-		    }	    
-		  }
-		}
+        {
+          "type": "package",
+          "package": {
+            "name": "advanced-custom-fields/advanced-custom-fields-pro",
+            "version": "5.11.4",
+            "type": "wordpress-plugin",
+            "dist": {
+              "type": "zip",
+              "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k="
+            }
+          }
+        }
   ],
   "extra": {
     "installer-paths": {

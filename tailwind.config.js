@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /**
  * Tailwind config
  * Usage comments are ABOVE each property
@@ -17,12 +19,24 @@ module.exports = {
     plugins: [
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/aspect-ratio'),
+        plugin(function ({ addComponents, theme }) {
+            addComponents({
+                '.container': {
+                    maxWidth: theme('maxWidth.1440'),
+                    marginTop: theme('margin.0'),
+                    marginRight: theme('margin.auto'),
+                    marginBottom: theme('margin.0'),
+                    marginLeft: theme('margin.auto'),
+                    width: '100%',                  
+                },
+            })
+        })        
     ],    
     theme: {
         // extend default tailwind theme config
         extend: {
             // bg-{ value } bg-gray
-            backgroundColor: (defaultTheme) => defaultTheme('colors'),            
+            backgroundColor: (defaultTheme) => defaultTheme('colors'),
             // rounded-{ value } rounded-0, use `rounded` for default
             borderRadius: {
                 0: '0',
@@ -35,32 +49,34 @@ module.exports = {
             },
             // border-{ value } border-1
             borderWidth: {
-            	0: '0',
-            	1: '1px',
+                0: '0',
+                1: '1px',
                 2: '2px',
                 4: '4px',
                 6: '6px',
                 8: '8px',
                 10: '10px',
             },
-            // use `shadow` for default            
+            // use `shadow` for default
             boxShadow: {
                 DEFAULT: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
             },
             // text-{ value }, bg-gray 
             colors: {
-            	'light-fuchsia': '#de1898',            	
-            	'royal-fuchsia': '#ca2c92',
-            	'dark-fuchsia': '#8b1e65',
+                'light-fuchsia': '#de1898',
+                'royal-fuchsia': '#ca2c92',
+                'dark-fuchsia': '#8b1e65',
 
-            	'light-pink': '#fae8ef',
-            	'light-gold': '#FFED8A',
+                'light-pink': '#fae8ef',
+                'light-gold': '#FFED8A',
+                'metalic-gold': '#d4af37',
                 
                 'turquoise': '#3accdd',
                 'sky-blue': '#329ae5',
 
-            	'light-gray': '#f8f8f8',
-                'gray': '#dddddd',                
+                'light-gray': '#f5f5f5',
+                'gray': '#dddddd',
+                'dark-gray': '#7f7f7f',             
 
                 'blue-black': '#2d2d39',
 
@@ -112,14 +128,16 @@ module.exports = {
                 700: '700', // bold
                 800: '800', // extra bold
                 900: '900', // black
-            },          
+            },
+            // gap-{ value }
+            gap: (defaultTheme) => defaultTheme('commonPixelSizes'),
             // leading-{ value }, leading-18
             lineHeight: (defaultTheme) => defaultTheme('commonPixelSizes'),
             // m-{ value }, m-20  
             margin: (defaultTheme) => defaultTheme('spacing'),
             // max-w-{ value }, max-w-1440
             maxWidth: {
-            	'auto': 'auto',
+                'auto': 'auto',
                 1440: '1440px',
             },
             // p-{ value }, p-20                   
@@ -171,7 +189,7 @@ module.exports = {
             },
         },      
     },
-	corePlugins: {
-		container: false,
-	},    
+    corePlugins: {
+        container: false,
+    },    
 };

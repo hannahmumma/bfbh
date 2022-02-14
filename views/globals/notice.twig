@@ -1,0 +1,11 @@
+{% import "macros/svg-icons.twig" as svg %}
+
+<div class="notice bg-light-gold w-full fixed z-20 flex items-center justify-center py-10 px-20 js-notice" style="{{ options.notices.background_color }}">
+	<div class="text-wrapper text-center w-full">
+		{{ options.notices.notice }}
+	</div>
+
+	<div class="icon-wrapper flex">
+		{{ svg.svgSpriteIcon('notice-close text-blue-black cursor-pointer h-18 w-18 self-end js-notice-close', 'close') }}
+	</div>	
+</div>

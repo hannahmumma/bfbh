@@ -22,6 +22,36 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_61ed84b9109cb",
+            "label": "Text Alignment",
+            "name": "text_alignment",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61e5b82b36bb3",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Left": "Left",
+                "Right": "Right"
+            },
+            "allow_null": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
             "key": "field_61da2a4ee3849",
             "label": "Image Text Title",
             "name": "image_text_title",
@@ -117,5 +147,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1642444864
+    "modified": 1643121209
 }

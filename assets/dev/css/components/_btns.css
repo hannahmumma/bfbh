@@ -1,13 +1,17 @@
 .primary,
 li.primary,
 button.primary {
-	@apply text-white text-center py-10 px-20 rounded-full bg-royal-fuchsia shadow cursor-pointer
+    @apply text-white text-center py-10 px-20 rounded-full bg-royal-fuchsia shadow cursor-pointer
 		hover:text-light-pink transition
 		bg-gradient-to-r from-light-fuchsia to-royal-fuchsia;
 }
 
 .secondary,
-button.secondary {	
-	@apply rounded-full py-10 px-20 bg-white text-royal-fuchsia cursor-pointer shadow
+button.secondary {
+    @apply rounded-full py-10 px-20 bg-white text-royal-fuchsia cursor-pointer border-1
 		hover:text-white transition hover:bg-royal-fuchsia;
+}
+
+.spinner.is-hidden {
+    @apply opacity-0 h-0 w-0 m-0;
 }

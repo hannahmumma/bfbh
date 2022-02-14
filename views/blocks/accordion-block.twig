@@ -16,7 +16,7 @@
 		{% endif %}
 
 		<div class="block-main">
-			<div class="accordion-wrapper js-accordion" data-accordion>
+			<div class="accordion-wrapper js-accordion">
 				{% for item in block_fields.accordions %}
 					<ul id="{{ item.title|lower|replace({' ': '-'})}}" class="accordion__list leading-28{{ not loop.last ? ' mb-40' : null }}">
 						<li class="accordion__list-item">

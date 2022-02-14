@@ -1,0 +1,55 @@
+{% import "macros/svg-icons.twig" as svg %}
+
+{% extends "layouts/block.twig" %}
+
+{% set block_name = 'acf-slider' %}
+{% set block_classes = 'bg-light-gray' %}
+
+{% block content %}
+
+	<div class="block-inner container">
+
+		{% if block_fields.slider_title or block_fields.slider_description %}
+			<div class="block-header mb-20">
+				<h2 class="heading-2">{{ block_fields.slider_title }}</h2>
+				<p class="p-body">{{ block_fields.slider_description }}</p>
+			</div>
+		{% endif %}
+
+		<div class="block-main">
+			{% if block_fields.slider|length %}
+				{% for slider in block_fields.slider %} 		
+					<div class="slider -ml-20 -mr-20 md:ml-0 md:mr-0 {{ not loop.last ? 'mb-80' : null }}">
+						<div class="swiper relative js-swiper">
+							<div class="swiper-wrapper">
+								{% for images in slider %}
+									{% for image in images %} 
+										<div class="swiper-slide">
+											<picture>
+												<source srcset="{{ image.url|resize(480, 600) }}" media="(min-width: 480px)">
+												<source srcset="{{ image.url|resize(768, 960) }}" media="(min-width: 768px)">
+												<source srcset="{{ image.url|resize(1024, 1280) }}" media="(min-width: 1024px)">
+												<source srcset="{{ image.url|resize(1200, 1500) }}" media="(min-width: 1200px)">
+												<source srcset="{{ image.url|resize(1440, 1800) }}" media="(min-width: 1440px)">
+												<img class="rounded-16" src="{{ image.url|resize(320, 400) }}" alt="{{ image.alt ? image.alt : 'Image of house' }}">
+											</picture>
+										</div>
+									{% endfor %}
+								{% endfor %}
+							</div>
+							<div class="swiper-button-prev hidden p-8 rounded-full bg-light-gray absolute top-[45%] left-10 z-10 cursor-pointer md:flex">
+								{{ svg.svgSpriteIcon('text-dark-fuchsia h-24 w-24', 'chevron-left') }}
+							</div>
+							<div class="swiper-button-next hidden p-8 rounded-full bg-light-gray absolute top-[45%] right-10 z-10 cursor-pointer md:flex">
+								{{ svg.svgSpriteIcon('text-dark-fuchsia h-24 w-24', 'chevron-right') }}
+							</div>						
+						</div>
+
+					</div>
+				{% endfor %}				
+			{% endif %}
+			
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,9 +1,8 @@
 {% set block_classes = block_classes|default(null) %}
 {% set block_name = block_name|default(false) %}
-{% set block_styles = block_styles|default(false) %}
 
 {% if  block_name %}
-	<div class="block-container {{ block_classes }}" style="{{ block_styles }}" data-block="{{ block_name }}" data-block-id="{{ block.id }}">
+	<div class="block-container {{ block_classes }}" data-block="{{ block_name }}" data-block-id="{{ block.id }}">
 		{% block content %}{% endblock %}
 	</div>
 {% else %}

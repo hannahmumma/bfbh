@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 	<!--[if lt IE 9]><html class="no-js no-svg ie lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes }}> <![endif]-->
 	<!--[if IE 9]><html class="no-js no-svg ie ie9 lt-ie9 lt-ie8" {{ site.language_attributes }}> <![endif]-->
-	<!--[if gt IE 9]><!--><html class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
+	<!--[if gt IE 9]><!--><html class="no-js no-svg bg-white" {{ site.language_attributes }}> <!--<![endif]-->
 	<head>
+		<title>{{ post.title }} | {{ bloginfo('name') }}</title>		
+    	<meta charset="{{ site.charset }}" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    	<meta name="description" content="{{ site.description }}">		
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">		
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/png" href="{{ theme.path }}/assets/dist/img/favicon.png">
+		<link rel="icon" type="image/svg+xml" href="{{theme.path}}/assets/dist/img/favicon.svg">
+		<script src="https://www.google.com/recaptcha/api.js?render=6Le-gkAeAAAAAEiODiccNcgGEs5q6NM3v7W5eYtC"></script>
+		
 		{{ function('wp_head') }}
 	</head>
 
-	<body class='{{ body_class }} {{ post.title ? "page-#{post.title|replace({' ': '-'})|lower}" : null }}'>
+	<body class='{{ body_class }} {{ post.title ? "page-#{post.title|raw|replace({' &#038;' : '', ' ' : '-'})|lower }" : null }}'>
 		<a id="skip-to" href="#content" class="absolute left-0 opacity-0 -z-50 focus:opacity-100 focus:top-0 focus:z-10" aria-label="Skip to main content">Skip to main content</a>
+
+		{% if options.notices|length %}
+			{% include 'globals/notice.twig' %}
+		{% endif %}		
+
 		{% include 'globals/header.twig' %}
+
 		<main id="content">
 			{% block page %}{% endblock %}
 		</main>
-		<div class="backdrop is-backdrop w-full h-full fixed z-10 top-0 bottom-0 left-0 right-0 bg-blue-black opacity-90 is-hidden"></div>			
+		{% include 'globals/backdrop.twig' %}		
 		{% include 'globals/footer.twig' %}
 		{{ function('wp_footer') }}
 		<div id="svg-icons" class="hidden"></div>

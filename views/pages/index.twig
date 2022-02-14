@@ -2,12 +2,22 @@
 
 {% block page %}
 
-	<div class="wrapper pb-80">
+	<div class="wrapper">
+		
 		{% if override_page_title != true %}
-			<div class="page-heading container pt-40 px-20 md:px-40 lg:px-60">
+			<div class="page-heading container pt-80 px-20 md:px-40 lg:px-60">
 				<h1 class="heading-1">{{ post.title }}</h1>
 			</div>
 		{% endif %}
+
+		{% if not is_hero and post.thumbnail|length %}
+			<div class="featured-image-wrapper">
+				<img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" />
+			</div>
+		{% endif %}
+
 		{{ post.content }}
+
+		{% include 'modules/contact.twig' %}
 	</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 .footer__list-item {
-	@apply hover:underline transition;
+    @apply hover:underline transition;
 }
 
 .footer__list-item svg {
-	@apply h-20 w-20;
+    @apply h-20 w-20;
 }

@@ -1,0 +1,7 @@
+.is-visible.backdrop {
+    @apply opacity-70 duration-500 ease-in-out;
+}
+
+.is-hidden.backdrop {
+    @apply z-[-1] opacity-0 duration-500 ease-in-out;
+}

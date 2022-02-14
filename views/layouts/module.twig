@@ -1,7 +1,8 @@
 {% set module_name = module_name|default(false) %}
+{% set module_classes = module_classes|default(false) %}
 
 {% if  module_name %}
-	<div class="block-container {{ block_classes|default('') }}" data-module="{{ module_name }}" data-block-id="{{ block.id }}">
+	<div class="module-container {{ module_classes|default('') }}" data-module="{{ module_name }}">
 		{% block module %}{% endblock %}
 	</div>
 {% else %}

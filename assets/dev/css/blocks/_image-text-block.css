@@ -1,0 +1,50 @@
+[data-block="acf-image-text"] {
+    &.is-hero {
+        .block-text {
+            @apply absolute top-0 right-0 bottom-0 left-0;
+        }
+
+        .heading-wrapper {
+            @apply self-start mt-[8%] w-[40%] -rotate-[30deg] max-w-[915px];
+        }
+
+        .heading-2 {
+            font-size: clamp(2rem, 8vw, 12rem);
+            @apply font-serif text-light-gold text-center leading-[100%];
+        }
+
+        .text-wrapper {
+            @apply mr-20 mb-[5%] mt-auto self-end;
+        }
+
+        .text-wrapper p {
+            font-size: clamp(1rem, 4vw, 2rem);
+
+            @apply font-mono leading-[120%] text-white text-center lg:font-900;
+        }
+    }
+
+    &:not(.is-hero) {
+        .block-text {
+            @apply py-40 px-20 md:absolute md:top-0 md:py-100 md:right-0 md:bottom-0 md:left-0;
+        }
+
+        .heading-wrapper {
+            @apply mb-[3%] md:w-1/2;
+        }
+
+        .heading-2 {
+            @apply font-mono text-royal-fuchsia text-center leading-[100%] md:text-white;
+        }
+
+        .text-wrapper {
+            @apply text-center md:w-1/2;
+        }
+
+        .text-wrapper p {
+            font-size: clamp(1rem, 4vw, 2rem);
+
+            @apply text-royal-fuchsia leading-36 mb-[5%] md:text-white md:leading-[120%] lg:font-900;
+        }
+    }
+}

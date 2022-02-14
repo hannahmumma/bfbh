@@ -106,7 +106,9 @@ class AcfBlock
         $context['is_preview'] = $is_preview;    
         $context['block_fields'] = get_fields();
         $context['options'] = get_fields('option');
-        $context['google_api_key'] = getenv('GOOGLE_API_KEY');
+        // $context['google_api_key'] = getenv('GOOGLE_MAP_KEY');
+        $context['google_api_key'] = 'AIzaSyA_fBOwJhl6_pKXkjhyPgQX-VPDSaTOHWo';
+
         
         return apply_filters('acf_block_context', $context, $this->slug);
     }

@@ -1,0 +1,24 @@
+.main-menu {
+    @apply transition translate-x-0 translate-x-full duration-500 ease-in-out;
+}
+
+.menu__list-item:nth-last-child(2) {
+    @apply border-none;
+}
+
+.is-visible.main-menu {
+    @apply bg-white shadow
+		transition translate-x-full translate-x-0 duration-500 ease-in-out;
+}
+
+.is-hidden.menu-open {
+    @apply h-0 opacity-0;
+}
+
+.is-hidden.menu-close {
+    @apply h-0 opacity-0;
+}
+
+.is-open.header {
+    @apply z-20;
+}

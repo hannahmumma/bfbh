@@ -3,20 +3,20 @@
         browser: true,
         node: true
     },
-    "extends": ["airbnb-base", "prettier"],    
+    "extends": ["airbnb-base", "prettier"],
     "plugins": ["prettier"],
     "parser": "@babel/eslint-parser",
     "parserOptions": {
         "allowImportExportEverywhere": true,
         requireConfigFile: false,
         "sourceType": "module",
-    },    
+    },
     "rules": {
         "import/no-unresolved": "off",
+        "indent": ["error", 4],
         "no-plusplus": "off",
         "no-use-before-define": ["error", { "variables": false }],
         "no-param-reassign": [2, { "props": false }],
         "prettier/prettier": ["error"],
-    },  
+    },
 }
-

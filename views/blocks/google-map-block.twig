@@ -3,6 +3,8 @@
 {% set block_name = 'acf-google-map' %}
 {% set block_classes = 'is-full-width' %}
 
+{% set location = block_fields.map_location == 'Address' ? "#{block_fields.map_address|replace({' ' : '+'})}" : "#{ block_fields.map_latitude},#{block_fields.map_longitude}"  %}
+
 {% block content %}
 
 	<div class="" data-block={{ block_name }} data-block-id={{ block.id }}>
@@ -22,10 +24,12 @@
 				style="border:0"
 				loading="lazy"
 				allowfullscreen
-				src="https://www.google.com/maps/embed/v1/place?key={{ google_api_key }}&q={{ block_fields.map_address|replace({' ' : '+'}) }}">
+				src="https://www.google.com/maps/embed/v1/place?key={{ google_api_key }}&q={{ location }}"
+				title="Google Map">
 			</iframe>
 		</div>
 
 	</div>
 
 {% endblock %}
+

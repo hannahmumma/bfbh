@@ -1,7 +1,3 @@
-.icon-wrapper svg {
-	@apply mr-10 h-24 w-24;
-}
-
 .accordion-wrapper .icon-wrapper svg {
-	@apply h-16 w-16;
+    @apply h-16 w-16;
 }

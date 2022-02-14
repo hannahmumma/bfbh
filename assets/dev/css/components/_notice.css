@@ -1,0 +1,7 @@
+.notice {
+    @apply transition transform -translate-y-full duration-500 ease-in-out;
+}
+
+.is-visible.notice {
+    @apply opacity-100 h-auto transition transform translate-y-0 duration-500 ease-in-out;
+}
