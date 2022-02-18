@@ -10,10 +10,10 @@ namespace BFBH\CustomTaxonomies;
 
 class CustomTaxonomy
 {
-    protected $slug = "taxonomy-slug";
-    protected $singular_name = "Taxonomy Name";
-    protected $plural_name = "Taxonomy Names";
-    protected $objects = [];
+    protected $slug              = 'taxonomy-slug';
+    protected $singular_name     = 'Taxonomy Name';
+    protected $plural_name       = 'Taxonomy Names';
+    protected $objects           = [];
     protected $hierarchical      = true;
     protected $show_ui           = true;
     protected $show_admin_column = true;
@@ -34,7 +34,7 @@ class CustomTaxonomy
         ];
 
         $args = apply_filters(
-            "bfbh_taxonomy_args", [
+            'bfbh_taxonomy_args', [
             'labels'            => $labels,
             'hierarchical'      => $this->hierarchical,
             'show_ui'           => $this->show_ui,

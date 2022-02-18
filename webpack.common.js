@@ -44,7 +44,7 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|ico|svg)$/i,
                 type: "asset/resource",
-                exclude: path.resolve(__dirname, "./assets/dev/svg-sprite"),                
+                exclude: path.resolve(__dirname, "./assets/dev/svg-sprite"),
                 generator: {
                     filename: "img/[name][ext]",
                 },
@@ -67,18 +67,18 @@ module.exports = {
             },
         ],
     },
-    externals: { 
-        '@wordpress/blocks': 'wp.blocks',
-        '@wordpress/block-editor': 'wp.blockEditor',
-        '@wordpress/components': 'wp.components',
-        '@wordpress/hooks': 'wp.hooks',
+    externals: {
+        "@wordpress/blocks": "wp.blocks",
+        "@wordpress/block-editor": "wp.blockEditor",
+        "@wordpress/components": "wp.components",
+        "@wordpress/hooks": "wp.hooks",
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/[name].css",
         }),
         new SpriteLoaderPlugin({
-            plainSprite: true
-        }),      
+            plainSprite: true,
+        }),
     ],
 };

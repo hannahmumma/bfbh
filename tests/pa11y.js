@@ -47,6 +47,7 @@ const runPa11y = async () => {
 
     try {
         const results = await pa11y(url, config);
+
         if (results.issues.length) {
             console.log(results);
         } else {

@@ -47,7 +47,7 @@ class GutenbergManager
     {
         wp_register_script('bfbh-blocks', get_template_directory_uri() . '/assets/dist/js/blocks.js', []);
         wp_enqueue_script('bfbh-blocks', get_stylesheet_directory_uri() . '/assets/dist/js/blocks.js', []);
-    }
+    } 
 
     public function addScriptAttributes($tag, $handle, $src): string
     {
@@ -62,7 +62,7 @@ class GutenbergManager
 
     public function registerBlocks(): void
     {
-        if (!function_exists('register_block_type') ) {
+        if (!function_exists('register_block_type')) {
             return;
         }
 
