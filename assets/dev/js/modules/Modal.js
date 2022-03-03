@@ -8,7 +8,7 @@ export default class Modal {
 
     modals = document.querySelectorAll(".js-modal");
 
-    init() {
+    init = () => {
         this.modals.forEach((modal) => {
             this.openBtn = modal.nextElementSibling;
             this.closeBtn = modal.querySelector(".js-close");
@@ -16,13 +16,13 @@ export default class Modal {
             this.open(modal);
             this.close(modal, this.closeBtn);
         });
-    }
+    };
 
     /**
      * @method open
      * @desc
      */
-    open(modal) {
+    open = (modal) => {
         this.openBtn.addEventListener("click", () => {
             modal.classList.remove("is-hidden");
             modal.classList.add("is-visible");
@@ -32,9 +32,9 @@ export default class Modal {
 
             this.body.classList.add("disable-scroll");
         });
-    }
+    };
 
-    close(modal, closeBtn) {
+    close = (modal, closeBtn) => {
         this.els = [closeBtn, this.backdrop];
         this.els.forEach((el) => {
             el.addEventListener("click", () => {
@@ -47,5 +47,5 @@ export default class Modal {
                 this.body.classList.remove("disable-scroll");
             });
         });
-    }
+    };
 }

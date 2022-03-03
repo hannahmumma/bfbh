@@ -1,3 +1,9 @@
+/**
+ * @method getParam
+ * @desc searches for params and returns value based if key matches param
+ * @param {string}
+ * @return {string}
+ */
 const getParam = (param) => {
     const searchParams = new URLSearchParams(window.location.search);
     let item;
@@ -17,7 +23,6 @@ const getParam = (param) => {
  * @method delay
  * @desc sets a timer
  * @param {integer}
- * @return {object}
  */
 const delay = (ms) =>
     new Promise((resolve) => {

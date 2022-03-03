@@ -7,11 +7,11 @@ import "swiper/css";
 export default class SwiperCarousel {
     swiper = document.querySelectorAll(".swiper");
 
-    init() {
+    init = () => {
         this.swiper.forEach((swiper) => this.getSwiper(swiper));
-    }
+    };
 
-    getSwiper(swiper) {
+    getSwiper = (swiper) => {
         this.swiper = swiper;
 
         this.options = {
@@ -40,5 +40,5 @@ export default class SwiperCarousel {
         };
 
         return new Swiper(this.swiper, this.options);
-    }
+    };
 }

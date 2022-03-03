@@ -4,7 +4,7 @@
 export default class StickyHeader {
     skipTo = document.getElementById("skip-to");
 
-    init() {
+    init = () => {
         this.options = {
             root: null,
             rootMargin: "0px",
@@ -13,9 +13,9 @@ export default class StickyHeader {
 
         this.observer = new IntersectionObserver(this.callback, this.options);
         this.observer.observe(this.skipTo);
-    }
+    };
 
-    callback(entries) {
+    callback = (entries) => {
         entries.forEach((entry) => {
             this.header = entry.target.nextElementSibling;
 
@@ -25,5 +25,5 @@ export default class StickyHeader {
                 this.header.classList.remove("is-sticky");
             }
         });
-    }
+    };
 }

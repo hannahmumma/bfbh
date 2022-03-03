@@ -16,16 +16,16 @@ export default class MainMenu {
 
     closeBtn = this.header.querySelector(".js-close-btn");
 
-    init() {
-        this.open();
-        this.close();
-    }
+    init = () => {
+        this.#open();
+        this.#close();
+    };
 
     /**
      * @method open
      * @desc
      */
-    open() {
+    #open = () => {
         this.openBtn.addEventListener("click", () => {
             this.backdrop.classList.add("is-visible");
             this.backdrop.classList.remove("is-hidden");
@@ -36,13 +36,13 @@ export default class MainMenu {
             this.body.classList.add("disable-scroll");
             this.header.classList.add("is-open");
         });
-    }
+    };
 
     /**
      * @method close
      * @desc
      */
-    close() {
+    #close = () => {
         this.els = [this.closeBtn, this.backdrop, ...this.mainMenuItems];
 
         this.els.forEach((el) => {
@@ -57,5 +57,5 @@ export default class MainMenu {
                 this.header.classList.remove("is-open");
             });
         });
-    }
+    };
 }

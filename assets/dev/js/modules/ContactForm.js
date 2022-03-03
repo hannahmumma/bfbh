@@ -8,10 +8,10 @@ export default class ContactForm {
 
     spinner = this.contactForm.querySelector(".spinner");
 
-    init() {
+    init = () => {
         this.submitForm();
         this.styleRecaptcha();
-    }
+    };
 
     submitForm() {
         this.contactForm.addEventListener("submit", (e) => {
@@ -21,7 +21,7 @@ export default class ContactForm {
         });
     }
 
-    recaptcha(e) {
+    recaptcha = (e) => {
         e.preventDefault();
 
         grecaptcha.ready(() => {
@@ -68,9 +68,9 @@ export default class ContactForm {
                         });
                 });
         });
-    }
+    };
 
-    styleRecaptcha() {
+    styleRecaptcha = () => {
         this.badge = document.querySelector(".grecaptcha-badge");
 
         if (!this.badge) {
@@ -80,5 +80,5 @@ export default class ContactForm {
         this.badge.parentNode.classList.add("recaptcha-wrapper");
 
         return true;
-    }
+    };
 }

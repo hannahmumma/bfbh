@@ -4,7 +4,7 @@
 export default class Accordion {
     accordions = document.querySelectorAll("[data-accordion]");
 
-    init() {
+    init = () => {
         this.accordions.forEach((accordion) => {
             this.accordionItems =
                 accordion.querySelectorAll(".js-accordion-item");
@@ -34,9 +34,9 @@ export default class Accordion {
                 });
             });
         });
-    }
+    };
 
-    oneItem(item, str1, str2) {
+    oneItem = (item, str1, str2) => {
         this.item = item;
         this.str1 = str1;
         this.str2 = str2;
@@ -46,9 +46,9 @@ export default class Accordion {
 
         this.item.querySelector(".icon-wrapper").classList.remove(this.str1);
         this.item.querySelector(".icon-wrapper").classList.add(this.str2);
-    }
+    };
 
-    allItems(btn, str1, str2) {
+    allItems = (btn, str1, str2) => {
         this.btn = btn;
         this.str1 = str1;
         this.str2 = str2;
@@ -61,5 +61,5 @@ export default class Accordion {
                 item.classList.remove(str2);
                 item.classList.add(str1);
             });
-    }
+    };
 }
