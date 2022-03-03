@@ -5,15 +5,7 @@ import "swiper/css";
  * @class SwiperCarousel
  */
 export default class SwiperCarousel {
-    /**
-     * @constructor
-     * @desc creates an instance of SwiperCarousel
-     */
-    constructor() {
-        this.swiper = document.querySelectorAll(".swiper");
-
-        this.init();
-    }
+    swiper = document.querySelectorAll(".swiper");
 
     init() {
         this.swiper.forEach((swiper) => this.getSwiper(swiper));

@@ -2,14 +2,7 @@
  * @class StickyNav
  */
 export default class StickyHeader {
-    /**
-     * @constructor
-     * @desc creates an instance of StickyNav
-     */
-    constructor() {
-        this.skipTo = document.getElementById("skip-to");
-        this.init();
-    }
+    skipTo = document.getElementById("skip-to");
 
     init() {
         this.options = {

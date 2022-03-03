@@ -10,7 +10,7 @@ namespace BFBH\Managers;
 class WordPressManager
 {
     
-    public function run():void
+    public function run(): void
     {
         add_filter('wp_check_filetype_and_ext', [$this, 'fileTypes'], 10, 4);
         add_filter('upload_mimes', [$this, 'mimeTypes']);
@@ -34,14 +34,14 @@ class WordPressManager
         ];
     }
 
-    public function mimeTypes($mimes)
+    public function mimeTypes($mimes): array
     {
         $mimes['svg'] = 'image/svg+xml';
 
         return $mimes;
     }
 
-    public function removeJqueryMigrate( $scripts ) 
+    public function removeJqueryMigrate($scripts): void
     {
         if (! is_admin() && isset($scripts->registered['jquery']) ) {
             $script = $scripts->registered['jquery'];
@@ -52,7 +52,7 @@ class WordPressManager
         }
     }
 
-    public function disableAdminFromFrontEnd()
+    public function disableAdminFromFrontEnd(): bool
     {
         if (is_blog_admin()) {
             return true;

@@ -1,20 +1,12 @@
 /* global grecaptcha, ajax_object  */
-/* eslint-disable camelcase */
 
 /**
  * @class Modal
  */
 export default class ContactForm {
-    /**
-     * @constructor
-     * @desc creates an instance of Modal
-     */
-    constructor() {
-        this.contactForm = document.querySelector(".contact-form form");
-        this.spinner = this.contactForm.querySelector(".spinner");
+    contactForm = document.querySelector(".contact-form form");
 
-        this.init();
-    }
+    spinner = this.contactForm.querySelector(".spinner");
 
     init() {
         this.submitForm();
@@ -44,6 +36,7 @@ export default class ContactForm {
                     this.formData.append("action", "initMail");
                     this.formData.append("token", token);
 
+                    /* eslint-disable-next-line camelcase */
                     fetch(ajax_object.ajax_url, {
                         method: "POST",
                         credentials: "same-origin",

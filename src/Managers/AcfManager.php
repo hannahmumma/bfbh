@@ -13,7 +13,7 @@ class AcfManager
      * @method run    initialize
      * @return void
      */            
-    public function run():void
+    public function run(): void
     {
         add_action('acf/init', [$this, 'registerOptionsPage'], 1, 3);
     }

@@ -14,7 +14,7 @@ use Timber\Twig_Function;
 
 class ThemeManager
 {
-    public function run()
+    public function run(): void
     {
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 999);
         add_action('admin_enqueue_scripts', [$this, 'enqueueAdmin'], 999);
@@ -116,13 +116,13 @@ class ThemeManager
         return $twig;
     }
 
-    public function getTimberTerms($terms)
+    public function getTimberTerms($terms): array
     {
         return Timber::get_terms($terms);
     }
 
     // return full parent terms
-    public function processParentTerms($terms_field) 
+    public function processParentTerms($terms_field): array
     {
         $array = [];
         $parent_terms = Timber::get_terms(array('taxonomy' => $terms_field, 'parent' => 0));
@@ -140,7 +140,7 @@ class ThemeManager
         return array_unique($array);
     }
 
-    public function inlineSvg($url)
+    public function inlineSvg($url): string
     {
         $path = $this->convertUrlToPath($url);
 
@@ -156,7 +156,7 @@ class ThemeManager
         return $path;
     }
 
-    public function getExtension($url)
+    public function getExtension($url): string
     {
         $index = getenv('ENVIRONMENT') === 'dev' ? 1 : 2;
         $ext = explode('.', $url)[$index];
@@ -164,7 +164,7 @@ class ThemeManager
         return $ext;
     }
     
-    public function addAttributesToScript($tag, $handle)
+    public function addAttributesToScript($tag, $handle): string
     {
         if ('script' !== $handle ) {
 

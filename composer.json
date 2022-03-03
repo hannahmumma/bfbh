@@ -18,11 +18,11 @@
             "type": "package",
             "package": {
                 "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.11.4",
+                "version": "5.12",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k="
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9MTcwMDE2fHR5cGU9ZGV2ZWxvcGVyfGRhdGU9MjAxOS0wOS0xMSAxNDozMzoyNA=="
                 }
             }
         }
@@ -50,7 +50,7 @@
         }
     },
     "require": {
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.11.4",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.12",
         "phpmailer/phpmailer": "^6.5",
         "timber/timber": "^1.19.1",
         "vlucas/phpdotenv": "^5.4.1",

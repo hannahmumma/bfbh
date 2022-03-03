@@ -39,7 +39,7 @@ class GutenbergManager
         add_action('init', [$this, 'registerBlocks']);
         add_action('acf/init', [$this, 'initAcfBlocks']);
         add_filter('block_categories_all', [$this, 'addBlockCategories'], 10, 2);
-        add_filter('allowed_block_types_all', [$this,'setAllowedBlocks']);
+        // add_filter('allowed_block_types_all', [$this,'setAllowedBlocks']);
         add_filter('use_block_editor_for_post', [$this,'disableBlockEditor'], 10, 2);
     }
 
@@ -77,7 +77,7 @@ class GutenbergManager
      * @method registerAcfBlocks    register blocks
      * @return void
      */    
-    public function initAcfBlocks()
+    public function initAcfBlocks(): void
     {      
         new \BFBH\AcfBlocks\AccordionBlock();
         new \BFBH\AcfBlocks\AmenitiesBlock();

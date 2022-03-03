@@ -2,17 +2,11 @@
  * @class Modal
  */
 export default class Modal {
-    /**
-     * @constructor
-     * @desc creates an instance of Modal
-     */
-    constructor() {
-        this.body = document.body;
-        this.backdrop = document.querySelector(".js-backdrop");
-        this.modals = document.querySelectorAll(".js-modal");
+    body = document.body;
 
-        this.init();
-    }
+    backdrop = document.querySelector(".js-backdrop");
+
+    modals = document.querySelectorAll(".js-modal");
 
     init() {
         this.modals.forEach((modal) => {

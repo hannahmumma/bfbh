@@ -45,12 +45,6 @@ class AcfBlock
      * @var string $mode block mode
      */
     protected $mode = 'edit';
-
-    /** 
-     * @var array $default_context block context
-     */
-    protected $default_context = [];
-
     
     public function __construct()
     {
@@ -101,7 +95,6 @@ class AcfBlock
 
     public function processContext($block, $content = '', $is_preview = false)
     {
-        $context = $this->default_context;
         $context['block'] = $block;
         $context['is_preview'] = $is_preview;    
         $context['block_fields'] = get_fields();

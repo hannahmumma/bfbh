@@ -2,18 +2,10 @@
  * @class BuildSvgSprite
  */
 export default class BuildSvgSprite {
-    /**
-     * @constructor
-     * @desc creates an instance of BuildSvgSprite
-     */
-    constructor() {
-        this.svgSprite = document.getElementById("svg-icons");
-
-        this.init();
-    }
+    svgSprite = document.getElementById("svg-icons");
 
     /**
-     * @method populateSvgSprite
+     * @method init
      * @desc set context for svg sprite, fetch sprite, append it
      */
     init() {

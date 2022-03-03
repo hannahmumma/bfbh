@@ -56,22 +56,25 @@ class MailService
 
     public function sendMail($mail)
     {
+    	$email = getenv('CONTACT_EMAIL');
+    	$password = getenv('CONTACT_EMAIL_PASS');
+        $admin_email = getenv('ENVIRONMENT') === 'dev' ? $email : get_bloginfo('admin_email');
+
         //Server settings
         // $mail->SMTPDebug  = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = getenv('CONTACT_EMAIL');
-        $mail->Password   = getenv('CONTACT_EMAIL_PASS');
+        $mail->Username   = $email;
+        $mail->Password   = $password;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
         //Recipients
-        $emailToAdmin = getenv('ENVIRONMENT') === 'dev' ? getenv('CONTACT_EMAIL') : get_bloginfo('admin_email');
 
-        $mail->SetFrom(getenv('CONTACT_EMAIL'), 'BFBH Website');
-        $mail->AddBCC(getenv('CONTACT_EMAIL'), 'BCC BFBH');
-        $mail->AddAddress($emailToAdmin, 'Brian Frazer');
+        $mail->SetFrom($email, 'BFBH Website');
+        $mail->AddAddress($admin_email, 'Brian Frazer');
+        $mail->AddBCC($email, 'BCC BFBH');        
 
         $contact = "Name: {$_POST['first_name']} {$_POST['last_name']} <br /> Email: {$_POST['email']}";
 

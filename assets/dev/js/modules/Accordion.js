@@ -2,14 +2,7 @@
  * @class Accordion
  */
 export default class Accordion {
-    /**
-     * @constructor
-     * @desc creates an instance of Modal
-     */
-    constructor() {
-        this.accordions = document.querySelectorAll("[data-accordion]");
-        this.init();
-    }
+    accordions = document.querySelectorAll("[data-accordion]");
 
     init() {
         this.accordions.forEach((accordion) => {
@@ -20,9 +13,9 @@ export default class Accordion {
                     if (
                         item.nextElementSibling.classList.contains("is-closed")
                     ) {
-                        this.openCloseItems(item, "is-closed", "is-opened");
+                        this.oneItem(item, "is-closed", "is-opened");
                     } else {
-                        this.openCloseItems(item, "is-opened", "is-closed");
+                        this.oneItem(item, "is-opened", "is-closed");
                     }
                 });
             });
@@ -32,10 +25,10 @@ export default class Accordion {
             this.accordionBtns.forEach((btn) => {
                 btn.addEventListener("click", () => {
                     if (btn.matches('[data-accordion-status="is-closed"]')) {
-                        this.openAllCloseAll(btn, "is-opened", "is-closed");
+                        this.allItems(btn, "is-opened", "is-closed");
                         btn.innerText = "Close all";
                     } else {
-                        this.openAllCloseAll(btn, "is-closed", "is-opened");
+                        this.allItems(btn, "is-closed", "is-opened");
                         btn.innerText = "Open all";
                     }
                 });
@@ -43,7 +36,7 @@ export default class Accordion {
         });
     }
 
-    openCloseItems(item, str1, str2) {
+    oneItem(item, str1, str2) {
         this.item = item;
         this.str1 = str1;
         this.str2 = str2;
@@ -55,7 +48,7 @@ export default class Accordion {
         this.item.querySelector(".icon-wrapper").classList.add(this.str2);
     }
 
-    openAllCloseAll(btn, str1, str2) {
+    allItems(btn, str1, str2) {
         this.btn = btn;
         this.str1 = str1;
         this.str2 = str2;

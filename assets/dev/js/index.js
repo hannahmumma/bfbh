@@ -11,13 +11,19 @@ if (module.hot) {
     module.hot.accept();
 }
 
-const globals = () => [
-    new BuildSvgSprite(),
-    new ContactForm(),
-    new MainMenu(),
-    new Modal(),
-    new Notice(),
-];
+const globals = () => {
+    const globalsArr = [
+        new BuildSvgSprite(),
+        new ContactForm(),
+        new MainMenu(),
+        new Modal(),
+        new Notice(),
+    ];
+
+    globalsArr.forEach((arr) => {
+        arr.init();
+    });
+};
 
 const modules = () => {
     const scripts = {
@@ -29,7 +35,8 @@ const modules = () => {
         if (document.querySelector(`${value}`)) {
             import(`./modules/${key}`).then((module) => {
                 const Key = module.default;
-                return new Key();
+                const item = new Key();
+                item.init();
             });
         }
     });

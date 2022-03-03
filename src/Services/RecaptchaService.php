@@ -46,7 +46,7 @@ class RecaptchaService
         $endpoint = 'https://www.google.com/recaptcha/api/siteverify';
 
         $httpHeader = [
-            'Content-type: application/x-www-form-urlencoded; charset=utf-8',
+            'Content-type: application/x-www-form-urlencoded; charset=utf-8',            
             'Accept: application/json'
         ];
 

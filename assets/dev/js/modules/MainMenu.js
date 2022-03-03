@@ -2,21 +2,19 @@
  * @class MainMenu
  */
 export default class MainMenu {
-    /**
-     * @constructor
-     * @desc creates an instance of Modal
-     */
-    constructor() {
-        this.body = document.body;
-        this.backdrop = document.querySelector(".js-backdrop");
-        this.header = document.querySelector(".header");
-        this.mainMenu = document.querySelector(".js-main-menu");
-        this.mainMenuItems = this.mainMenu.querySelectorAll(".menu__list-item");
-        this.openBtn = this.header.querySelector(".js-open-btn");
-        this.closeBtn = this.header.querySelector(".js-close-btn");
+    body = document.body;
 
-        this.init();
-    }
+    backdrop = document.querySelector(".js-backdrop");
+
+    header = document.querySelector(".header");
+
+    mainMenu = document.querySelector(".js-main-menu");
+
+    mainMenuItems = this.mainMenu.querySelectorAll(".menu__list-item");
+
+    openBtn = this.header.querySelector(".js-open-btn");
+
+    closeBtn = this.header.querySelector(".js-close-btn");
 
     init() {
         this.open();
